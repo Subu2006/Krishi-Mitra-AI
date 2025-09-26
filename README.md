@@ -18,8 +18,7 @@ Limited awareness of soil health, crop rotation benefits, and market trends
 
 Generative AI, combined with satellite imagery, IoT, and multilingual conversational interfaces, offers a transformative opportunity to empower farmers with hyper-localized, science-backed crop recommendations.
 
-
-🎯 Objective
+## 🎯 Objective
 
 To build an AI-powered decision support system that helps farmers choose the right crop at the right time, based on:
 
@@ -34,11 +33,11 @@ Real-time market demand & price trends via APIs and agri-market scraping
 Sustainability & profitability scores for long-term impact
 
 
-🛠️ Detailed Description
+## 🛠️ Detailed Description
 
 Our solution integrates Machine Learning, AI, and IoT into a unified platform:
 
-Data Sources
+## Data Sources
 
 🌍 Satellite Data: Soil Grids, ISRO’s Bhuvan APIs
 
@@ -48,32 +47,7 @@ Data Sources
 
 📈 Market Data: Scraped from agri-market portals & APIs
 
-Core Features
-
-AI-powered Crop Recommendation Model
-
-Suggests optimal crops based on soil, weather, and market factors
-
-Forecasts yield, profit margins, and sustainability scores
-
-Mobile Application (Android/iOS)
-
-Offline-first, low-data usage
-
-Simple, multilingual farmer-friendly interface
-
-Conversational AI
-
-Text, voice, and chat-based support in local languages
-
-Farmers can ask questions & receive actionable insights
-
-Image-based Diagnosis (Future Scope)
-
-Upload field images for crop disease & soil condition detection
-
-
-🌟 Key Features
+## 🌟 Key Features
 🔐 Authentication & Onboarding
 
 AES-256 encryption for data security
@@ -244,8 +218,7 @@ Auto-sync in low-connectivity areas
 
 Dark mode & accessibility features
 
-
-🚀 Expected Solution & Impact
+## 🚀 Expected Solution & Impact
 
 📱 Mobile Prototype: Accessible even in low-connectivity rural areas
 
@@ -257,10 +230,8 @@ Dark mode & accessibility features
 
 🌍 Scalable Solution: Ready for deployment across Jharkhand & India
 
-
-📐 System Architecture
-[Satellite Data / IoT Sensors / Weather APIs / Market APIs]
-                        |
+## 📐 System Architecture
+[Satellite Data / IoT Sensors / Weather APIs / Market APIs]                        |
                         v
               Data Preprocessing Layer
                         |
@@ -272,8 +243,7 @@ Dark mode & accessibility features
    Mobile Application                       Farmer Advisory Portal
  (Multilingual, Offline, Voice/Chat)        (For Gov/NGO Experts)
 
-
-🧰 Tech Stack
+## 🧰 Tech Stack
 
 Frontend (Mobile App): Flutter / React Native
 
@@ -287,8 +257,7 @@ Cloud & Hosting: AWS / Azure / NIC Cloud
 
 Data Sources: Soil Grids, ISRO Bhuvan, IMD Weather, Agri Market APIs
 
-
-📊 Expected Outcomes
+## 📊 Expected Outcomes
 
 ✅ 30–40% Increase in farmer income through data-driven decisions
 
@@ -298,13 +267,11 @@ Data Sources: Soil Grids, ISRO Bhuvan, IMD Weather, Agri Market APIs
 
 ✅ Supports government’s sustainable agriculture mission
 
-
-📜 License
+## 📜 License
 
 This project is released under the MIT License – open for innovation & collaboration.
 
-
-🤝 Acknowledgements
+## 🤝 Acknowledgements
 
 Government of Jharkhand – Initiative & support
 
