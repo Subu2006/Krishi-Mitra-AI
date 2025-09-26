@@ -1,10 +1,10 @@
 # Krishi-Mitra-AI
 
-**🌾 AI-Based Crop Recommendation System for Farmers**
+## 🌾 AI-Based Crop Recommendation System for Farmers
 
-## SIH ID: SIH25030 | Domain: Agriculture, FoodTech & Rural Development | Organization: Government of Jharkhand
+ SIH ID: SIH25030 | Domain: Agriculture, FoodTech & Rural Development | Organization: Government of Jharkhand
 
-**📌 Background**
+## 📌 Background
 
 Farmers in India often face challenges such as:
 
