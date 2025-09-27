@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishi-Mitra-AI - Complete Agricultural Intelligence</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <meta name="theme-color" content="#218cc4">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+</head>
+<body data-theme="light">
+    <!-- Header -->
+    <header class="header glass-effect">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Krishi-Mitra-AI</span>
+                    <div class="version">v9.0.0</div>
+                </div>
+                <div class="header-actions">
+                    <div class="connection-status" id="connectionStatus">
+                        <i class="fas fa-wifi"></i>
+                        <span>Online</span>
+                    </div>
+                    <select id="languageSelector" class="form-control" onchange="changeLanguage(this.value)">
+                        <option value="en">🇬🇧 English</option>
+                        <option value="hi">🇮🇳 हिंदी</option>
+                        <option value="bn">🇧🇩 বাংলা</option>
+                        <option value="mr">🇮🇳 मराठी</option>
+                        <option value="ta">🇮🇳 தமிழ்</option>
+                        <option value="te">🇮🇳 తెలుగు</option>
+                        <option value="gu">🇮🇳 ગુજરાતી</option>
+                    </select>
+                    <button class="btn btn--secondary" id="voiceToggleBtn" onclick="toggleVoiceFeature()">
+                        <i class="fas fa-microphone"></i> <span>Voice On</span>
+                    </button>
+                    <button class="btn btn--primary" id="themeToggle" onclick="toggleTheme()">
+                        <i class="fas fa-moon"></i> <span>Dark Mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Primary Navigation -->
+    <nav class="nav glass-effect">
+        <div class="container">
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="showSection('dashboard')" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
+                </button>
+                <button class="nav-tab" onclick="showSection('cropAdvisory')" data-section="cropAdvisory">
+                    <i class="fas fa-seedling"></i> <span>Crop Advisory</span>
+                </button>
+                <button class="nav-tab" onclick="showSection('diseaseDetection')" data-section="diseaseDetection">
+                    <i class="fas fa-camera"></i> <span>Disease Detection</span>
+                </button>
+                <button class="nav-tab" onclick="showSection('weather')" data-section="weather">
+                    <i class="fas fa-cloud-sun"></i> <span>Weather</span>
+                </button>
+                <button class="nav-tab" onclick="showSection('marketPrices')" data-section="marketPrices">
+                    <i class="fas fa-chart-line"></i> <span>Market Prices</span>
+                </button>
+                <button class="nav-tab" onclick="showSection('iotSensors')" data-section="iotSensors">
+                    <i class="fas fa-wifi"></i> <span>IoT Sensors</span>
+                </button>
+                <button class="nav-tab" onclick="showSection('aiAssistant')" data-section="aiAssistant">
+                    <i class="fas fa-robot"></i> <span>AI Assistant</span>
+                </button>
+                <button class="nav-tab" onclick="showSection('community')" data-section="community">
+                    <i class="fas fa-users"></i> <span>Community</span>
+                </button>
+                <div class="nav-dropdown">
+                    <button class="nav-tab dropdown-toggle" onclick="toggleMoreMenu()">
+                        <i class="fas fa-ellipsis-h"></i> <span>More...</span>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </button>
+                    <div class="dropdown-menu" id="moreMenu">
+                        <button class="dropdown-item" onclick="showSection('governmentSchemes')">
+                            <i class="fas fa-university"></i> Government Schemes
+                        </button>
+                        <button class="dropdown-item" onclick="showSection('expertConsultation')">
+                            <i class="fas fa-user-md"></i> Expert Consultation
+                        </button>
+                        <button class="dropdown-item" onclick="showSection('trainingEducation')">
+                            <i class="fas fa-graduation-cap"></i> Training & Education
+                        </button>
+                        <button class="dropdown-item" onclick="showSection('equipmentMarketplace')">
+                            <i class="fas fa-tractor"></i> Equipment Marketplace
+                        </button>
+                        <button class="dropdown-item" onclick="showSection('insuranceFinance')">
+                            <i class="fas fa-shield-alt"></i> Insurance & Finance
+                        </button>
+                        <button class="dropdown-item" onclick="showSection('analyticsReports')">
+                            <i class="fas fa-chart-bar"></i> Analytics & Reports
+                        </button>
+                        <button class="dropdown-item" onclick="showSection('farmMapping')">
+                            <i class="fas fa-map"></i> Farm Mapping
+                        </button>
+                        <button class="dropdown-item" onclick="showSection('profileSettings')">
+                            <i class="fas fa-user-cog"></i> Profile Settings
+                        </button>
+                        <button class="dropdown-item" onclick="showSection('offlineSupport')">
+                            <i class="fas fa-download"></i> Offline Support
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- Dashboard Section -->
+            <div id="dashboardSection" class="section active">
+                <div class="section-header">
+                    <h1><i class="fas fa-tachometer-alt"></i> Smart Agricultural Dashboard</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakDashboard()">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <!-- Live Weather Widget -->
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-cloud-sun"></i> Live Weather</h3>
+                            <button class="btn btn--sm" onclick="refreshWeather()">
+                                <i class="fas fa-refresh"></i>
+                            </button>
+                        </div>
+                        <div class="weather-widget">
+                            <div class="weather-main">
+                                <div class="temperature" id="dashboardTemp">28.5°C</div>
+                                <div class="condition" id="dashboardCondition">Partly Cloudy</div>
+                            </div>
+                            <div class="weather-details">
+                                <div class="detail-item">
+                                    <span>Humidity</span>
+                                    <span id="dashboardHumidity">68%</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span>Wind</span>
+                                    <span id="dashboardWind">12.3 km/h</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span>UV Index</span>
+                                    <span id="dashboardUV">6</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Market Price Ticker -->
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> Market Prices</h3>
+                            <button class="btn btn--sm" onclick="refreshMarket()">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <div class="price-ticker" id="marketTicker">
+                            <div class="price-item trending-up">
+                                <span class="commodity">Rice</span>
+                                <span class="price">₹2,150</span>
+                                <span class="change">+3.2%</span>
+                            </div>
+                            <div class="price-item trending-down">
+                                <span class="commodity">Wheat</span>
+                                <span class="price">₹2,280</span>
+                                <span class="change">-1.5%</span>
+                            </div>
+                            <div class="price-item trending-up">
+                                <span class="commodity">Maize</span>
+                                <span class="price">₹1,850</span>
+                                <span class="change">+4.2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IoT Sensor Status -->
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-wifi"></i> IoT Sensors</h3>
+                            <div class="status-indicator online"></div>
+                        </div>
+                        <div class="sensor-grid" id="sensorStatus">
+                            <div class="sensor-item optimal">
+                                <div class="sensor-icon">
+                                    <i class="fas fa-tint"></i>
+                                </div>
+                                <div class="sensor-data">
+                                    <span class="sensor-label">Soil pH</span>
+                                    <span class="sensor-value">6.2</span>
+                                    <span class="sensor-status">Optimal</span>
+                                </div>
+                            </div>
+                            <div class="sensor-item adequate">
+                                <div class="sensor-icon">
+                                    <i class="fas fa-water"></i>
+                                </div>
+                                <div class="sensor-data">
+                                    <span class="sensor-label">Moisture</span>
+                                    <span class="sensor-value">68%</span>
+                                    <span class="sensor-status">Adequate</span>
+                                </div>
+                            </div>
+                            <div class="sensor-item normal">
+                                <div class="sensor-icon">
+                                    <i class="fas fa-thermometer-half"></i>
+                                </div>
+                                <div class="sensor-data">
+                                    <span class="sensor-label">Temperature</span>
+                                    <span class="sensor-value">25.8°C</span>
+                                    <span class="sensor-status">Normal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="action-btn" onclick="showSection('cropAdvisory')">
+                                <i class="fas fa-seedling"></i>
+                                <span>Get Crop Advice</span>
+                            </button>
+                            <button class="action-btn" onclick="showSection('diseaseDetection')">
+                                <i class="fas fa-camera"></i>
+                                <span>Scan Disease</span>
+                            </button>
+                            <button class="action-btn" onclick="showSection('weather')">
+                                <i class="fas fa-cloud-sun"></i>
+                                <span>Check Weather</span>
+                            </button>
+                            <button class="action-btn" onclick="showSection('marketPrices')">
+                                <i class="fas fa-rupee-sign"></i>
+                                <span>View Prices</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities -->
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-history"></i> Recent Activities</h3>
+                        </div>
+                        <div class="activity-timeline" id="recentActivities">
+                            <div class="activity-item">
+                                <div class="activity-icon success">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <strong>Crop Advisory Generated</strong>
+                                    <p>Rice recommendation with 87% confidence</p>
+                                    <small>2 hours ago</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon warning">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <strong>Irrigation Alert</strong>
+                                    <p>Soil moisture below optimal level</p>
+                                    <small>4 hours ago</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon info">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <strong>Market Update</strong>
+                                    <p>Rice prices increased by 3.2%</p>
+                                    <small>6 hours ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Center -->
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bell"></i> Notifications</h3>
+                            <span class="notification-badge">3</span>
+                        </div>
+                        <div class="notifications-list" id="notificationsList">
+                            <div class="notification-item priority-high">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div>
+                                    <strong>Weather Alert</strong>
+                                    <p>Heavy rainfall expected tomorrow</p>
+                                    <small>30 min ago</small>
+                                </div>
+                            </div>
+                            <div class="notification-item priority-medium">
+                                <i class="fas fa-leaf"></i>
+                                <div>
+                                    <strong>Fertilizer Reminder</strong>
+                                    <p>Time to apply nitrogen fertilizer</p>
+                                    <small>2 hours ago</small>
+                                </div>
+                            </div>
+                            <div class="notification-item priority-low">
+                                <i class="fas fa-chart-line"></i>
+                                <div>
+                                    <strong>Price Alert</strong>
+                                    <p>Wheat prices reached your target</p>
+                                    <small>1 day ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Crop Advisory Section -->
+            <div id="cropAdvisorySection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-seedling"></i> AI Crop Advisory System</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('cropAdvisory')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                
+                <div class="crop-layout">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3>Soil & Climate Analysis</h3>
+                            <button class="btn btn--secondary" onclick="fillSampleData()">
+                                <i class="fas fa-magic"></i> Sample Data
+                            </button>
+                        </div>
+                        <form id="cropAnalysisForm" onsubmit="return analyzeCropSuitability(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Soil pH</label>
+                                    <div class="input-with-voice">
+                                        <input type="number" id="soilPH" step="0.1" min="3" max="10" value="6.2" required>
+                                        <button type="button" class="voice-input-btn" onclick="startVoiceInput('soilPH')">
+                                            <i class="fas fa-microphone"></i>
+                                        </button>
+                                    </div>
+                                    <small>Optimal: 5.5-7.5</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Soil Moisture (%)</label>
+                                    <div class="input-with-voice">
+                                        <input type="number" id="soilMoisture" min="0" max="100" value="68" required>
+                                        <button type="button" class="voice-input-btn" onclick="startVoiceInput('soilMoisture')">
+                                            <i class="fas fa-microphone"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Organic Matter (%)</label>
+                                    <input type="number" id="organicMatter" step="0.1" min="0" max="10" value="3.2" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nitrogen (mg/kg)</label>
+                                    <input type="number" id="nitrogen" min="0" max="500" value="150" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Temperature (°C)</label>
+                                    <input type="number" id="cropTemp" min="0" max="50" value="28" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Humidity (%)</label>
+                                    <input type="number" id="cropHumidity" min="0" max="100" value="68" required>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn--secondary" onclick="resetCropForm()">
+                                    <i class="fas fa-undo"></i> Reset
+                                </button>
+                                <button type="submit" class="btn btn--primary">
+                                    <i class="fas fa-brain"></i> Get AI Recommendations
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card glass-card" id="cropResults" style="display: none;">
+                        <div class="card-header">
+                            <h3><i class="fas fa-brain"></i> AI Recommendations</h3>
+                            <button class="btn btn--outline" onclick="speakCropResults()">
+                                <i class="fas fa-volume-up"></i> Speak Results
+                            </button>
+                        </div>
+                        <div id="cropRecommendationResults"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disease Detection Section -->
+            <div id="diseaseDetectionSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-camera"></i> AI Disease Detection</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('diseaseDetection')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                
+                <div class="disease-layout">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3>Plant Image Analysis</h3>
+                        </div>
+                        <div class="camera-container">
+                            <video id="cameraPreview" style="display: none;" width="100%" height="300" autoplay></video>
+                            <canvas id="captureCanvas" style="display: none;" width="640" height="480"></canvas>
+                            <div id="imageUploadArea" class="upload-area">
+                                <i class="fas fa-camera fa-3x"></i>
+                                <h3>Capture or Upload Plant Image</h3>
+                                <p>Point camera at affected plant parts for analysis</p>
+                                <div class="upload-buttons">
+                                    <button class="btn btn--primary" onclick="startCamera()" id="startCameraButton">
+                                        <i class="fas fa-camera"></i> Start Camera
+                                    </button>
+                                    <button class="btn btn--outline" onclick="selectImage()">
+                                        <i class="fas fa-upload"></i> Upload Image
+                                    </button>
+                                    <button class="btn btn--primary" onclick="captureImage()" id="captureButton" style="display: none;">
+                                        <i class="fas fa-camera"></i> Capture
+                                    </button>
+                                    <button class="btn btn--success" onclick="analyzeDisease()" id="analyzeButton" style="display: none;">
+                                        <i class="fas fa-search"></i> Analyze Disease
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                        </div>
+                    </div>
+
+                    <div class="card glass-card" id="diseaseResults" style="display: none;">
+                        <div class="card-header">
+                            <h3><i class="fas fa-stethoscope"></i> Disease Analysis Results</h3>
+                            <button class="btn btn--outline" onclick="speakDiseaseResults()">
+                                <i class="fas fa-volume-up"></i> Listen
+                            </button>
+                        </div>
+                        <div id="diseaseAnalysisResults"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weather Section -->
+            <div id="weatherSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-cloud-sun"></i> Weather Monitoring</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakWeatherForecast()">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                
+                <div class="weather-grid">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-thermometer-half"></i> Current Weather</h3>
+                            <button class="btn btn--sm" onclick="refreshWeather()">
+                                <i class="fas fa-refresh"></i>
+                            </button>
+                        </div>
+                        <div class="weather-display">
+                            <div class="current-weather">
+                                <div class="temp-large" id="currentTempLarge">28.5°C</div>
+                                <div class="weather-condition">
+                                    <i class="fas fa-cloud-sun"></i>
+                                    <span id="currentConditionLarge">Partly Cloudy</span>
+                                </div>
+                                <div class="weather-details-grid">
+                                    <div class="detail">
+                                        <span>Feels Like</span>
+                                        <span id="feelsLike">31°C</span>
+                                    </div>
+                                    <div class="detail">
+                                        <span>Humidity</span>
+                                        <span id="currentHumidityLarge">68%</span>
+                                    </div>
+                                    <div class="detail">
+                                        <span>Wind</span>
+                                        <span id="currentWindLarge">12.3 km/h</span>
+                                    </div>
+                                    <div class="detail">
+                                        <span>Pressure</span>
+                                        <span id="pressure">1013 hPa</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-week"></i> 10-Day Forecast</h3>
+                        </div>
+                        <div class="forecast-list" id="extendedForecast">
+                            <div class="forecast-item">
+                                <span class="day">Today</span>
+                                <i class="fas fa-cloud-sun"></i>
+                                <span class="temps">32° / 22°</span>
+                                <span class="rain-chance">5%</span>
+                            </div>
+                            <div class="forecast-item">
+                                <span class="day">Tomorrow</span>
+                                <i class="fas fa-cloud-rain"></i>
+                                <span class="temps">30° / 21°</span>
+                                <span class="rain-chance">75%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Agricultural Advisories</h3>
+                        </div>
+                        <div class="advisories" id="weatherAdvisories">
+                            <div class="advisory-item warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div>
+                                    <strong>Heavy Rainfall Alert</strong>
+                                    <p>Secure equipment and delay spraying operations</p>
+                                </div>
+                            </div>
+                            <div class="advisory-item success">
+                                <i class="fas fa-seedling"></i>
+                                <div>
+                                    <strong>Optimal Growing Conditions</strong>
+                                    <p>Perfect weather for rice transplanting</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Prices Section -->
+            <div id="marketPricesSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-chart-line"></i> Market Intelligence</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakMarketPrices()">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                
+                <div class="market-grid">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-rupee-sign"></i> Live Commodity Prices</h3>
+                            <button class="btn btn--sm" onclick="refreshMarket()">
+                                <i class="fas fa-sync"></i>
+                            </button>
+                        </div>
+                        <div class="market-table-container">
+                            <table class="market-table" id="liveMarketTable">
+                                <thead>
+                                    <tr>
+                                        <th>Commodity</th>
+                                        <th>Price (₹/quintal)</th>
+                                        <th>24h Change</th>
+                                        <th>Market</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="marketTableBody">
+                                    <!-- Dynamic content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-area"></i> Price Trends</h3>
+                        </div>
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="marketChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IoT Sensors Section -->
+            <div id="iotSensorsSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-wifi"></i> IoT Sensor Network</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSensorStatus()">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                
+                <div class="sensors-grid">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-tachometer-alt"></i> Real-time Monitoring</h3>
+                        </div>
+                        <div class="sensor-dashboard" id="sensorDashboard">
+                            <!-- Real-time sensor data will be populated here -->
+                        </div>
+                    </div>
+
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> Historical Trends</h3>
+                        </div>
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="sensorChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Assistant Section -->
+            <div id="aiAssistantSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-robot"></i> AI Assistant</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('aiAssistant')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                
+                <div class="ai-layout">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-comments"></i> Chat with AI</h3>
+                        </div>
+                        <div class="chat-container">
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="message ai-message">
+                                    <div class="message-avatar">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="message-content">
+                                        <p>Hello! I'm your AI farming assistant. I can help with crop recommendations, disease identification, weather analysis, and more. How can I assist you today?</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="chatInput" placeholder="Ask me anything about farming..." onkeypress="handleChatKeyPress(event)">
+                                <button class="btn btn--primary" onclick="sendChatMessage()">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                                <button class="btn btn--secondary" onclick="startVoiceChat()">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Section -->
+            <div id="communitySection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-users"></i> Farmer Community</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('community')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                
+                <div class="community-grid">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-comments"></i> Community Feed</h3>
+                        </div>
+                        <div class="community-feed" id="communityFeed">
+                            <div class="feed-item">
+                                <div class="user-info">
+                                    <div class="user-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="user-details">
+                                        <strong>Ram Singh</strong>
+                                        <span>Ranchi, Jharkhand</span>
+                                    </div>
+                                </div>
+                                <div class="feed-content">
+                                    <p>Great results with the rice variety recommended by AI! Increased yield by 20%. 🌾</p>
+                                    <div class="feed-actions">
+                                        <button class="btn btn--sm"><i class="fas fa-thumbs-up"></i> 12</button>
+                                        <button class="btn btn--sm"><i class="fas fa-comment"></i> 3</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-question-circle"></i> Q&A Forum</h3>
+                        </div>
+                        <div class="qa-section">
+                            <div class="qa-item">
+                                <div class="question">
+                                    <strong>Q: Best time for wheat sowing in Jharkhand?</strong>
+                                </div>
+                                <div class="answer">
+                                    <p><strong>A:</strong> Mid-November to early December is optimal for wheat sowing in Jharkhand.</p>
+                                    <small>By Dr. Suresh Kumar - Agricultural Expert</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Government Schemes Section -->
+            <div id="governmentSchemesSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-university"></i> Government Schemes</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('governmentSchemes')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                
+                <div class="schemes-grid">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-seedling"></i> PM-Kisan Calculator</h3>
+                        </div>
+                        <form onsubmit="return calculatePMKisan(event)">
+                            <div class="form-group">
+                                <label>Land Size (hectares)</label>
+                                <input type="number" id="pmkisanLand" step="0.1" min="0.1" max="10" value="2.0" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Farmer Category</label>
+                                <select id="pmkisanCategory" required>
+                                    <option value="small">Small Farmer (&lt; 2 ha)</option>
+                                    <option value="marginal">Marginal Farmer (&lt; 1 ha)</option>
+                                    <option value="large">Large Farmer (&gt; 2 ha)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full">
+                                <i class="fas fa-calculator"></i> Check Eligibility
+                            </button>
+                        </form>
+                        <div id="pmkisanResult" class="result-section"></div>
+                    </div>
+
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-shield-alt"></i> PMFBY Insurance Calculator</h3>
+                        </div>
+                        <form onsubmit="return calculateInsurance(event)">
+                            <div class="form-group">
+                                <label>Sum Insured (₹)</label>
+                                <input type="number" id="insuranceSum" min="10000" max="1000000" value="100000" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Crop Type</label>
+                                <select id="insuranceCrop" required>
+                                    <option value="rice">Rice</option>
+                                    <option value="wheat">Wheat</option>
+                                    <option value="maize">Maize</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Season</label>
+                                <select id="insuranceSeason" required>
+                                    <option value="kharif">Kharif</option>
+                                    <option value="rabi">Rabi</option>
+                                    <option value="commercial">Commercial</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full">
+                                <i class="fas fa-calculator"></i> Calculate Premium
+                            </button>
+                        </form>
+                        <div id="insuranceResult" class="result-section"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional sections would continue here for the remaining 7 features -->
+            <!-- For brevity, I'll include placeholders for the other sections -->
+
+            <!-- Expert Consultation Section -->
+            <div id="expertConsultationSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-user-md"></i> Expert Consultation</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('expertConsultation')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>Professional Agricultural Experts</h3>
+                        <p>Connect with certified agricultural experts for personalized advice.</p>
+                        <button class="btn btn--primary">
+                            <i class="fas fa-video"></i> Schedule Video Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Training & Education Section -->
+            <div id="trainingEducationSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-graduation-cap"></i> Training & Education</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('trainingEducation')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>Agricultural Learning Platform</h3>
+                        <p>Access courses, tutorials, and certifications to improve your farming skills.</p>
+                        <button class="btn btn--primary">
+                            <i class="fas fa-play"></i> Browse Courses
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipment Marketplace Section -->
+            <div id="equipmentMarketplaceSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-tractor"></i> Equipment Marketplace</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('equipmentMarketplace')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>Rent or Buy Farm Equipment</h3>
+                        <p>Find tractors, harvesters, and other agricultural machinery.</p>
+                        <button class="btn btn--primary">
+                            <i class="fas fa-search"></i> Browse Equipment
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insurance & Finance Section -->
+            <div id="insuranceFinanceSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-shield-alt"></i> Insurance & Finance</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('insuranceFinance')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>Financial Services for Farmers</h3>
+                        <p>Access crop insurance, loans, and financial planning tools.</p>
+                        <button class="btn btn--primary">
+                            <i class="fas fa-calculator"></i> Calculate Loan Eligibility
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics & Reports Section -->
+            <div id="analyticsReportsSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-chart-bar"></i> Analytics & Reports</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('analyticsReports')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>Farm Performance Analytics</h3>
+                        <p>Track yield, profitability, and farm efficiency with detailed reports.</p>
+                        <button class="btn btn--primary">
+                            <i class="fas fa-chart-line"></i> Generate Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Farm Mapping Section -->
+            <div id="farmMappingSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-map"></i> Farm Mapping</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('farmMapping')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>GPS Field Mapping</h3>
+                        <p>Map your fields, calculate areas, and plan crop rotations.</p>
+                        <button class="btn btn--primary">
+                            <i class="fas fa-map-marker-alt"></i> Start Mapping
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Settings Section -->
+            <div id="profileSettingsSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-user-cog"></i> Profile Settings</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('profileSettings')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                <div class="settings-grid">
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        </div>
+                        <form onsubmit="return saveProfile(event)">
+                            <div class="form-group">
+                                <label>Farmer Name</label>
+                                <input type="text" id="farmerName" value="Raj Kumar Singh">
+                            </div>
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" id="location" value="Ranchi, Jharkhand">
+                            </div>
+                            <div class="form-group">
+                                <label>Farm Size (hectares)</label>
+                                <input type="number" id="profileFarmSize" value="2.5" step="0.1">
+                            </div>
+                            <button type="submit" class="btn btn--primary">
+                                <i class="fas fa-save"></i> Save Profile
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offline Support Section -->
+            <div id="offlineSupportSection" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-download"></i> Offline Support</h1>
+                    <button class="btn btn--outline listen-btn" onclick="speakSection('offlineSupport')">
+                        <i class="fas fa-volume-up"></i> Listen
+                    </button>
+                </div>
+                <div class="card glass-card">
+                    <div class="card__body">
+                        <h3>Progressive Web App Features</h3>
+                        <p>Install the app for offline access and automatic sync when connected.</p>
+                        <div class="offline-status" id="offlineStatus">
+                            <span class="status-indicator online"></span>
+                            <span>Currently Online</span>
+                        </div>
+                        <button class="btn btn--primary" onclick="installPWA()">
+                            <i class="fas fa-download"></i> Install App
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Voice Status Indicator -->
+    <div id="voiceStatus" class="voice-status">
+        <i class="fas fa-microphone"></i>
+        <span>Listening...</span>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-seedling fa-spin"></i>
+        </div>
+        <p id="loadingMessage">Processing...</p>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Operation completed successfully</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
